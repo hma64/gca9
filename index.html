@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GCA styMode — Produits faits maison</title>
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/floating-contact.css" />
+  <script>
+    (function() {
+      var lang = localStorage.getItem("gca_stymode_lang") === "ar" ? "ar" : "fr";
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    })();
+  </script>
+</head>
+<body id="catalogPage">
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span class="topbar-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92-.08z"/></svg>
+          <a href="+21694827228" style="color:inherit">+216 94 827 228</a>
+        </span>
+        <span style="opacity:0.45">|</span>
+        <span>Livraison rapide 24–48h en Tunisie</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.83 1.55V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu"><span></span></button>
+      <a class="logo" href="index.html#home">
+        <img src="assets/logo-gca.png" width="48" height="48" alt="GCA styMode" />
+        <span>GCA</span> styMode
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <button class="drawer-close" id="closeNavDrawer" aria-label="Fermer">✕</button>
+        <li><a href="index.html#home" id="navHome">Accueil</a></li>
+        <li><a href="produits.html" id="navShop">Boutique</a></li>
+        <li><a href="index.html#categories" id="navCategories">Catégories</a></li>
+        <li><a href="index.html#contact" id="navContact">Contact</a></li>
+        <li><a href="produits.html" id="btnAllProducts">Voir tous les produits</a></li>
+        <li class="nav-lang-mobile">
+          <button type="button" class="lang-option nav-lang-opt" data-lang="fr" id="navLangFr">Français</button>
+          <button type="button" class="lang-option nav-lang-opt" data-lang="ar" id="navLangAr">العربية</button>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-dropdown">
+          <button type="button" class="lang-toggle" id="langToggleBtn">Français</button>
+          <div class="lang-menu" id="langMenu">
+            <button type="button" class="lang-option" data-lang="fr" id="langOptionFr">Français</button>
+            <button type="button" class="lang-option" data-lang="ar" id="langOptionAr">العربية</button>
+          </div>
+        </div>
+        <button class="wishlist-nav-btn" id="openWishlistBtn" type="button" aria-label="Favoris">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span id="wishlistNavLabel">Favoris</span>
+          <span class="wishlist-count-badge" id="wishlistCountBadge">0</span>
+        </button>
+        <button class="cart-btn" id="openCartBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" width="16" height="16" style="flex-shrink:0"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="cartLabelText">Panier</span> (<span id="cartCount">0</span>)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CATEGORY NAVIGATION BAR (populated by JS from Firestore) -->
+  <nav class="cat-navbar" id="catNavbar" style="display:none">
+    <div class="container cat-navbar-inner" id="catNavbarInner">
+      <a href="produits.html" class="cat-nav-link cat-nav-all">Tout voir</a>
+    </div>
+  </nav>
+
+  <!-- MARQUEE AD BAR — populated from Firestore 'ad' collection -->
+  <div class="marquee-bar" id="marqueeBar" style="display:none">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <main id="home">
+    <!-- ══ HERO SWIPER ══ -->
+    <section class="hero-swiper" id="heroSwiper">
+      <div class="swiper-slides" id="swiperSlides">
+        <div class="swiper-slide active" style="background-image:url('assets/hero1.jpg')">
+          <div class="swiper-overlay"></div>
+          <div class="swiper-content">
+            <h1 class="swiper-title" id="heroTitle">Créations <span>faites avec</span> mains passionnées</h1>
+            <p class="swiper-sub" id="heroText">Paniers, vannerie et objets artisanaux fabriqués à la main en Tunisie.</p>
+            <a class="btn btn-swiper" href="produits.html" id="shopCollectionBtn">Explorer la collection</a>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image:url('assets/hero2.jpg')">
+          <div class="swiper-overlay"></div>
+          <div class="swiper-content">
+            <h1 class="swiper-title">La nouvelle saison est là.</h1>
+            <p class="swiper-sub">Des pièces pensées pour ceux qui savent ce qu'ils veulent</p>
+            <a class="btn btn-swiper" href="produits.html" id="browseCategoriesBtn">Explorer la collection</a>
+          </div>
+        </div>
+      </div>
+      <!-- Arrows -->
+      <button class="swiper-arrow swiper-prev" id="swiperPrev" aria-label="Précédent">&#8249;</button>
+      <button class="swiper-arrow swiper-next" id="swiperNext" aria-label="Suivant">&#8250;</button>
+      <!-- Dots -->
+      <div class="swiper-dots" id="swiperDots">
+        <button class="swiper-dot active" data-index="0" aria-label="Slide 1"></button>
+        <button class="swiper-dot" data-index="1" aria-label="Slide 2"></button>
+      </div>
+    </section>
+
+    <!-- LOOP GALLERY ticker -->
+    <div class="loop-gallery-wrap">
+      <div class="container loop-gallery">
+        <div class="loop-track" id="loopTrack"></div>
+      </div>
+      <div class="container">
+        <div class="state-box" id="loopState" style="display: none; margin-top: 12px"></div>
+      </div>
+    </div>
+
+    <section id="categories">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" id="sectionCatTitle">Nos univers <span>artisanaux</span></h2>
+          <p class="section-subtitle" id="sectionCatSub">Paniers tressés, objets de décoration et cadeaux artisanaux faits main en Tunisie.</p>
+        </div>
+        <div class="categories-grid" id="categoriesGrid">
+          <div class="state-box" id="catState" style="display:none">Chargement…</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="shop">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" id="sectionShopTitle">Boutique <span>artisanale</span></h2>
+          <p class="section-subtitle" id="sectionShopSub">Explorez nos créations faites main — paniers, vannerie et objets déco — filtrés selon votre budget.</p>
+        </div>
+        <div class="shop-toolbar reveal">
+          <input class="search-input" id="searchInput" type="search" placeholder="" />
+          <button type="button" class="layout-kebab" id="layoutKebab" aria-label="Vue liste" title="Vue liste / grille">
+            <span class="layout-kebab-dot"></span>
+            <span class="layout-kebab-dot"></span>
+            <span class="layout-kebab-dot"></span>
+          </button>
+        </div>
+        <div class="price-filter reveal">
+          <div class="price-filter-head">
+            <span id="priceFilterLabel">Fourchette de prix</span>
+            <button type="button" class="preview-toggle" id="priceResetBtn">Reset</button>
+          </div>
+          <div class="price-values">
+            <input class="price-input" id="priceMinInput" min="0" step="1" type="number" value="0" />
+            <div class="price-divider">-</div>
+            <input class="price-input" id="priceMaxInput" min="0" step="1" type="number" value="0" />
+          </div>
+          <div class="range-wrap">
+            <div class="range-track"></div>
+            <div class="range-progress" id="rangeProgress"></div>
+            <input class="price-range" id="priceMinRange" max="1000" min="0" step="1" type="range" value="0" />
+            <input class="price-range" id="priceMaxRange" max="1000" min="0" step="1" type="range" value="1000" />
+          </div>
+        </div>
+        <div class="products-grid" id="productsContainer"></div>
+        <div class="state-box" id="stateBox" style="display: none"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title" id="sectionContactTitle">Contact <span>équipe</span></h2>
+          <p class="section-subtitle" id="sectionContactSub">Pour toute commande, question ou conseil personnalisé, contactez-nous directement.</p>
+        </div>
+        <div class="contact-box reveal">
+          <a class="contact-item" href="https://www.facebook.com/ste.globale.couture.artisanale/" target="_blank" rel="noopener">
+            <div class="contact-title">📘 Facebook</div>
+            <div class="contact-value">@ste.globale.couture.artisanale</div>
+          </a>
+          <a class="contact-item" href="https://m.me/ste.globale.couture.artisanale" target="_blank" rel="noopener">
+            <div class="contact-title">💬 Messenger</div>
+            <div class="contact-value">Message direct via la page</div>
+          </a>
+          <a class="contact-item" href="+21694827228">
+            <div class="contact-title">📞 Phone dealer</div>
+            <div class="contact-value" id="callNowLbl">94 827 228</div>
+          </a>
+          <a class="contact-item" href="https://www.instagram.com/gca.stymod/" target="_blank" rel="noopener">
+            <div class="contact-title">📸 Instagram</div>
+            <div class="contact-value">@gca.stymod</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="dim" id="cartDim"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <button class="cart-btn" id="closeCartBtn" type="button" style="align-self: flex-end; margin: 8px">✕</button>
+    <div class="cart-head">
+      <strong id="cartHeadLabel">Panier</strong>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div style="display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 10px">
+        <span id="cartTotalLabel">Total</span>
+        <span id="cartTotal">0 DT</span>
+      </div>
+      <button class="btn btn-primary" id="checkoutBtn" type="button" style="width: 100%">Valider mes achats</button>
+    </div>
+  </aside>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <img src="assets/logo-gca.png" alt="GCA styMode" />
+          <h3>GCA styMode</h3>
+          <p id="footerNote">Créations artisanales faites main en Tunisie. Paniers, vannerie et objets déco uniques.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/ste.globale.couture.artisanale" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://wa.me/21694827228" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/gca.stymod/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.83 1.55V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Navigation -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html#home">Accueil</a></li>
+            <li><a href="produits.html">Boutique</a></li>
+            <li><a href="index.html#categories">Catégories</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <!-- Service client -->
+        <div class="footer-col">
+          <h4>Service client</h4>
+          <ul>
+            <li><a href="#">Frais de livraison</a></li>
+            <li><a href="#">Suivi de commande</a></li>
+            <li><a href="#">Retours &amp; Échanges</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+        <!-- Contact info -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <strong>Téléphone</strong>
+              <a href="+21694827228" style="color:rgba(255,255,255,0.55);transition:color .22s">+216 94 827 228</a>
+            </li>
+            <li>
+              <strong>E-mail</strong>
+              <a href="mailto:mouhamedamineyousfi10@gmail.com" style="color:rgba(255,255,255,0.55);font-size:0.78rem">mouhamedamineyousfi10@gmail.com</a>
+            </li>
+            <li>
+              <strong>Livraison</strong>
+              Toute la Tunisie · 24–48h
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        GCA styMode — © <span id="year"></span> — Tous droits réservés | <a href="admin.html" style="color:inherit;text-decoration:none;opacity:0.5;">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="wishlist-dim" id="wishlistDim"></div>
+  <aside class="wishlist-drawer" id="wishlistDrawer" aria-hidden="true">
+    <div class="wishlist-head">
+      <strong id="wishlistDrawerTitle">Mes favoris</strong>
+      <button class="wishlist-close-btn" id="closeWishlistBtn" type="button" aria-label="Fermer">✕</button>
+    </div>
+    <div class="wishlist-items" id="wishlistItems"></div>
+  </aside>
+
+  <script type="module" src="js/cat-navbar.js"></script>
+  <script type="module" src="js/marquee-ad.js"></script>
+  <script type="module" src="js/index-page.js"></script>
+  <script src="js/floating-contact.js"></script>
+
+  <!-- FLOATING CONTACT BUTTON -->
+  <div class="floating-contact-container">
+    <div class="floating-contact-buttons" id="floatingContactButtons">
+      <a href="https://wa.me/21694827228" class="floating-contact-btn whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </a>
+      <a href="https://m.me/ste.globale.couture.artisanale" class="floating-contact-btn messenger" target="_blank" rel="noopener" aria-label="Messenger">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.908 1.463 5.503 3.746 7.202.195.144.316.37.316.612l-.015 1.834c-.004.47.495.786.91.564l2.05-1.094c.17-.09.365-.123.555-.094 1.12.17 2.28.264 3.438.264 5.523 0 10-4.145 10-9.258S17.523 2 12 2zm1.125 12.33l-2.125-2.268-4.125 2.268 4.537-4.826 2.125 2.268 4.125-2.268-4.537 4.826z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/gca.stymod/" class="floating-contact-btn instagram" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="+21694827228" class="floating-contact-btn phone" aria-label="Phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92-.08z"/></svg>
+      </a>
+    </div>
+    <button class="floating-contact-main-btn" id="floatingContactMainBtn" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <span class="floating-contact-tooltip">Besoin d'aide ?</span>
+    </button>
+  </div>
+
+  <!-- Hero Swiper -->
+  <script>
+  (function() {
+    const slides = document.querySelectorAll('.swiper-slide');
+    const dots   = document.querySelectorAll('.swiper-dot');
+    let current  = 0, timer;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+    function startTimer() { timer = setInterval(next, 5000); }
+    function resetTimer()  { clearInterval(timer); startTimer(); }
+
+    document.getElementById('swiperNext').addEventListener('click', () => { next(); resetTimer(); });
+    document.getElementById('swiperPrev').addEventListener('click', () => { prev(); resetTimer(); });
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => { goTo(+dot.dataset.index); resetTimer(); });
+    });
+
+    // Touch swipe
+    let tx = 0;
+    const el = document.getElementById('heroSwiper');
+    el.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    el.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); resetTimer(); }
+    }, { passive: true });
+
+    startTimer();
+  })();
+  </script>
+
+  <!-- Firestore Categories Grid -->
+  <script type="module">
+  import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { firebaseConfig } from "./js/firebase-config.js";
+
+  const app  = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+  const db   = getFirestore(app);
+  const grid = document.getElementById("categoriesGrid");
+  const catState = document.getElementById("catState");
+
+  // PRIMARY: /categories collection. FALLBACK: derive from /products
+  onSnapshot(
+    query(collection(db, "categories"), orderBy("order", "asc")),
+    snap => {
+      if (snap.empty) { loadFromProducts(); return; }
+      renderCats(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    },
+    () => loadFromProducts()
+  );
+
+  function loadFromProducts() {
+    onSnapshot(collection(db, "products"), snap => {
+      const map = {};
+      snap.forEach(d => {
+        const data = d.data();
+        const cat  = (data.category || data.Category || "").trim();
+        const img  = data.image || data.Image || "";
+        if (cat && !map[cat]) map[cat] = { name: cat, slug: cat, image: img };
+      });
+      renderCats(Object.values(map).sort((a, b) => a.name.localeCompare(b.name)));
+    });
+  }
+
+  function esc(s) { return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  function renderCats(cats) {
+    if (!grid) return;
+    if (!cats.length) {
+      if (catState) { catState.style.display = "block"; catState.textContent = "Aucune categorie trouvee."; }
+      return;
+    }
+    if (catState) catState.style.display = "none";
+    grid.innerHTML = "";
+    cats.forEach((cat, i) => {
+      const slug     = cat.slug || cat.name;
+      const img      = cat.image || "";
+      const subtitle = cat.subtitle || "";   // e.g. "Collection Raja"
+      const count    = cat.count    || "";   // e.g. "12 articles"
+      const a = document.createElement("a");
+      a.href      = "produits.html?cat=" + encodeURIComponent(slug);
+      a.className = "cat-card";
+      a.style.opacity    = "0";
+      a.style.transition = "opacity 400ms ease, transform 240ms ease, box-shadow 240ms ease";
+
+      a.innerHTML =
+        '<div class="cat-card-img">' +
+          (img
+            ? '<img src="' + esc(img) + '" alt="' + esc(cat.name) + '" loading="lazy" />'
+            : '<div class="cat-card-placeholder">🧺</div>'
+          ) +
+          // Menzberg-style overlay at bottom of image
+          '<div class="cat-card-overlay">' +
+            (subtitle ? '<span class="cat-card-subtitle">' + esc(subtitle) + '</span>' : '') +
+            '<span class="cat-card-title">' + esc(cat.name) + '</span>' +
+            (count ? '<span class="cat-card-count">' + esc(count) + '</span>' : '') +
+          '</div>' +
+        '</div>';
+
+      grid.appendChild(a);
+      setTimeout(() => { a.style.opacity = "1"; }, i * 70);
+    });
+  }
+  </script>
+
+</body>
+</html>

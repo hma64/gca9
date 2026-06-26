@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - GCA STYMODE</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Cloudinary Upload Widget -->
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+</head>
+<body>
+  <div id="loginOverlay" class="admin-overlay">
+    <div class="login-card">
+      <h2>Administration</h2>
+      <p>Veuillez entrer le mot de passe pour accéder au tableau de bord.</p>
+      <div class="password-container">
+        <input type="password" id="adminPassword" placeholder="Mot de passe">
+        <i class="fas fa-eye" id="togglePassword"></i>
+      </div>
+      <button id="loginBtn">Connexion</button>
+      <p id="loginError" class="error-msg"></p>
+    </div>
+  </div>
+
+  <div id="adminContent" style="display: none;">
+    <nav class="admin-nav">
+      <div class="admin-nav-brand">GCA Admin</div>
+      <div class="admin-nav-links">
+        <button class="nav-btn active" data-tab="products">Produits</button>
+        <button class="nav-btn" data-tab="categories">Catégories</button>
+        <button class="nav-btn" data-tab="orders">Commandes</button>
+        <button class="nav-btn" data-tab="ads">Publicités</button>
+        <button class="nav-btn" data-tab="reviews">Avis</button>
+        <button class="nav-btn" data-tab="config">Configuration</button>
+        <button id="logoutBtn" class="nav-btn logout">Déconnexion</button>
+      </div>
+    </nav>
+
+    <main class="admin-main">
+      <!-- Products Tab -->
+      <section id="productsTab" class="tab-content active">
+        <div class="tab-header">
+          <h2>Gestion des Produits</h2>
+          <button class="btn-primary" id="addProductBtn">Ajouter un Produit</button>
+        </div>
+        <div class="admin-table-container">
+          <table id="productsTable">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Tag</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsList"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Categories Tab -->
+      <section id="categoriesTab" class="tab-content">
+        <div class="tab-header">
+          <h2>Gestion des Catégories</h2>
+          <button class="btn-primary" id="addCategoryBtn">Ajouter une Catégorie</button>
+        </div>
+        <div class="admin-table-container">
+          <table id="categoriesTable">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Slug</th>
+                <th>Ordre</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="categoriesList"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Completed Orders Tab -->
+      <section id="ordersTab" class="tab-content">
+        <div class="tab-header">
+          <h2>Commandes Complétées</h2>
+          <div class="orders-actions">
+            <input type="text" id="ordersSearchInput" placeholder="Rechercher par client ou numéro de commande..." class="search-input">
+            <button class="btn-primary" id="exportOrdersBtn">Exporter en CSV</button>
+          </div>
+        </div>
+        <div class="admin-table-container">
+          <table id="ordersTable">
+            <thead>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Téléphone</th>
+                <th>Gouvernorat</th>
+                <th>Total (DT)</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersList"></tbody>
+          </table>
+          <div id="noOrdersMessage" class="no-data-message" style="display: none;">
+            <p>Aucune commande trouvée</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ads Tab -->
+      <section id="adsTab" class="tab-content">
+        <div class="tab-header">
+          <h2>Gestion des Publicités (Marquee)</h2>
+          <button class="btn-primary" id="addAdBtn">Ajouter une Pub</button>
+        </div>
+        <div class="admin-table-container">
+          <table id="adsTable">
+            <thead>
+              <tr>
+                <th>Texte</th>
+                <th>Ordre</th>
+                <th>Actif</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adsList"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Reviews Tab -->
+      <section id="reviewsTab" class="tab-content">
+        <div class="tab-header">
+          <h2>Gestion des Avis Clients</h2>
+        </div>
+        <div class="admin-table-container">
+          <table id="reviewsTable">
+            <thead>
+              <tr>
+                <th>Produit</th>
+                <th>Note</th>
+                <th>Commentaire</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reviewsListAdmin"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Config Tab -->
+      <section id="configTab" class="tab-content">
+        <div class="tab-header">
+          <h2>Configuration du Site</h2>
+        </div>
+        <form id="configForm" class="admin-form">
+          <div class="form-group">
+            <label>Email de réception des commandes</label>
+            <input type="email" id="confOrderEmail" required>
+          </div>
+          <div class="form-group">
+            <label>Frais de livraison (DT)</label>
+            <input type="number" id="confShippingDt" required>
+          </div>
+          <div class="form-group">
+            <label>Mot de passe Admin</label>
+            <div class="password-container">
+              <input type="password" id="confAdminPass" required>
+              <i class="fas fa-eye" id="toggleConfPassword"></i>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">Enregistrer la configuration</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modals -->
+  <div id="adminModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3 id="modalTitle">Produit</h3>
+      <form id="adminForm" class="admin-form">
+        <!-- Dynamic form fields will be injected here -->
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Details Modal -->
+  <div id="orderDetailsModal" class="modal">
+    <div class="modal-content order-details-modal">
+      <span class="close-modal">&times;</span>
+      <h3>Détails de la Commande</h3>
+      <div id="orderDetailsContent"></div>
+    </div>
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
