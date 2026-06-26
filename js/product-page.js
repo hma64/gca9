@@ -377,6 +377,21 @@ function initRatingSystem(productId) {
   // Star Hover/Click
   const stars = starRatingInput.querySelectorAll(".star");
   stars.forEach(star => {
+    star.addEventListener("mouseover", () => {
+      if (localStorage.getItem(`rated_${productId}`)) return;
+      const val = parseInt(star.dataset.value);
+      stars.forEach(s => {
+        s.style.color = parseInt(s.dataset.value) <= val ? "#ffc107" : "#ddd";
+      });
+    });
+
+    star.addEventListener("mouseout", () => {
+      if (localStorage.getItem(`rated_${productId}`)) return;
+      stars.forEach(s => {
+        s.style.color = parseInt(s.dataset.value) <= pendingRating ? "#ffc107" : "#ddd";
+      });
+    });
+
     star.addEventListener("click", () => {
       if (localStorage.getItem(`rated_${productId}`)) return;
       
@@ -403,7 +418,7 @@ async function saveReview(productId, rating, comment) {
       rating,
       comment,
       createdAt: serverTimestamp(),
-      approved: true 
+      approved: false 
     });
     
     localStorage.setItem(`rated_${productId}`, "true");
@@ -418,7 +433,7 @@ async function saveReview(productId, rating, comment) {
 
 function renderReviews(reviews) {
   if (!reviewsList) return;
-  const filtered = reviews.filter(r => r.comment && r.comment.trim());
+  const filtered = reviews.filter(r => r.approved && r.comment && r.comment.trim());
   if (filtered.length === 0) {
     reviewsList.innerHTML = `<p style="color:#999; text-align:center; padding:20px;">${getLang() === 'ar' ? 'لا توجد تعليقات بعد' : 'Aucun avis pour le moment.'}</p>`;
     return;
@@ -434,17 +449,18 @@ function renderReviews(reviews) {
 }
 
 function updateRatingSummary(reviews) {
-  if (!reviews.length) {
+  const approvedReviews = reviews.filter(r => r.approved);
+  if (!approvedReviews.length) {
     ratingSummary.style.display = "none";
     return;
   }
   
-  const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
-  const avg = (sum / reviews.length).toFixed(1);
+  const sum = approvedReviews.reduce((acc, r) => acc + r.rating, 0);
+  const avg = (sum / approvedReviews.length).toFixed(1);
   
   ratingSummary.style.display = "flex";
   avgStars.innerHTML = `<span style="color:#ffc107">${"★".repeat(Math.round(avg))}</span><span style="color:#ddd">${"☆".repeat(5 - Math.round(avg))}</span>`;
-  ratingCount.textContent = `(${reviews.length})`;
+  ratingCount.textContent = `(${approvedReviews.length})`;
 }
 
 if (submitReviewBtn) {
