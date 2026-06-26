@@ -246,19 +246,32 @@ function renderReviewsAdmin() {
     const productId = parts[1];
     const product = products.find(p => p.id === productId);
     
+    const statusBadge = r.approved 
+      ? '<span class="order-status completed">Approuvé</span>' 
+      : '<span class="order-status pending" style="background:#fff3cd; color:#856404;">En attente</span>';
+
     return `
       <tr>
         <td>${product ? product.name : productId}</td>
         <td><span style="color:#ffc107">${"★".repeat(r.rating)}</span></td>
         <td>${r.comment || '<em style="color:#999">Pas de commentaire</em>'}</td>
         <td>${r.createdAt?.toDate().toLocaleDateString() || ''}</td>
+        <td>${statusBadge}</td>
         <td class="action-btns">
-          <i class="fas fa-trash btn-delete" onclick="deleteReview('${r.path}')"></i>
+          ${!r.approved ? `<i class="fas fa-check btn-edit" title="Approuver" onclick="approveReview('${r.path}')" style="color:#28a745; margin-right:10px;"></i>` : ''}
+          <i class="fas fa-trash btn-delete" title="Supprimer" onclick="deleteReview('${r.path}')"></i>
         </td>
       </tr>
     `;
   }).join('');
 }
+
+window.approveReview = async (path) => {
+  if (confirm("Approuver cet avis ?")) {
+    const ref = doc(db, path);
+    await setDoc(ref, { approved: true }, { merge: true });
+  }
+};
 
 window.deleteReview = async (path) => {
   if (confirm("Supprimer cet avis ?")) {
