@@ -135,6 +135,7 @@ function loadData() {
   onSnapshot(collection(db, "products"), (snap) => {
     products = snap.docs.map(d => ({ id: d.id, ...d.data() }));
     renderProducts();
+    if (reviews.length > 0) renderReviewsAdmin(); // Re-render reviews to map product names
   });
 
   // Categories
@@ -157,6 +158,9 @@ function loadData() {
   });
 
   // Reviews (using collectionGroup for nested reviews)
+  // Note: collectionGroup with orderBy requires a composite index.
+  // If the index is missing, the query will fail. 
+  // We use a try-catch style approach by handling errors in onSnapshot.
   const reviewsQuery = query(collectionGroup(db, "reviews"), orderBy("createdAt", "desc"));
   onSnapshot(reviewsQuery, (snap) => {
     reviews = snap.docs.map(d => ({ 
@@ -165,6 +169,17 @@ function loadData() {
       ...d.data() 
     }));
     renderReviewsAdmin();
+  }, (error) => {
+    console.error("Error loading reviews with orderBy:", error);
+    // Fallback: try without orderBy if index is missing
+    onSnapshot(collectionGroup(db, "reviews"), (snap) => {
+      reviews = snap.docs.map(d => ({ 
+        id: d.id, 
+        path: d.ref.path, 
+        ...d.data() 
+      })).sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
+      renderReviewsAdmin();
+    });
   });
 }
 
@@ -240,6 +255,10 @@ function renderOrders() {
 }
 
 function renderReviewsAdmin() {
+  if (reviews.length === 0) {
+    reviewsListAdmin.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px; color:#999;">Aucun avis trouvé.</td></tr>';
+    return;
+  }
   reviewsListAdmin.innerHTML = reviews.map(r => {
     // Extract product ID from path: products/PRODUCT_ID/reviews/REVIEW_ID
     const parts = r.path.split('/');
@@ -248,11 +267,11 @@ function renderReviewsAdmin() {
     
     const statusBadge = r.approved 
       ? '<span class="order-status completed">Approuvé</span>' 
-      : '<span class="order-status pending" style="background:#fff3cd; color:#856404;">En attente</span>';
+      : '<span class="order-status pending" style="background:#fff3cd; color:#856404; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">En attente</span>';
 
     return `
       <tr>
-        <td>${product ? product.name : productId}</td>
+        <td>${product ? product.name : `<small style="color:#999">${productId}</small>`}</td>
         <td><span style="color:#ffc107">${"★".repeat(r.rating)}</span></td>
         <td>${r.comment || '<em style="color:#999">Pas de commentaire</em>'}</td>
         <td>${r.createdAt?.toDate().toLocaleDateString() || ''}</td>
