@@ -65,13 +65,22 @@
 .admin-nav {
   background: #000;
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 100;
+  gap: 0.5rem;
+}
+
+@media (min-width: 769px) {
+  .admin-nav {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
 }
 
 .admin-nav-brand {
@@ -99,9 +108,15 @@
 }
 
 .admin-main {
-  padding: 2rem;
+  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+  .admin-main {
+    padding: 2rem;
+  }
 }
 
 .tab-content {
@@ -562,5 +577,78 @@ th {
 
   th, td {
     padding: 0.7rem;
+  }
+
+  /* Responsive Tables for Admin */
+  .admin-table-container table, 
+  .admin-table-container thead, 
+  .admin-table-container tbody, 
+  .admin-table-container th, 
+  .admin-table-container td, 
+  .admin-table-container tr {
+    display: block;
+  }
+
+  .admin-table-container thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .admin-table-container tr {
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+
+  .admin-table-container td {
+    border: none;
+    position: relative;
+    padding-left: 45%;
+    text-align: right;
+    min-height: 1.2rem;
+  }
+
+  .admin-table-container td:before {
+    position: absolute;
+    left: 1rem;
+    width: 40%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 700;
+    color: #333;
+  }
+
+  /* Specific labels for Reviews Table */
+  #reviewsTable td:nth-of-type(1):before { content: "Produit"; }
+  #reviewsTable td:nth-of-type(2):before { content: "Note"; }
+  #reviewsTable td:nth-of-type(3):before { content: "Commentaire"; }
+  #reviewsTable td:nth-of-type(4):before { content: "Date"; }
+  #reviewsTable td:nth-of-type(5):before { content: "Statut"; }
+  #reviewsTable td:nth-of-type(6):before { content: "Actions"; }
+
+  /* Labels for Products Table */
+  #productsTable td:nth-of-type(1):before { content: "Image"; }
+  #productsTable td:nth-of-type(2):before { content: "Nom"; }
+  #productsTable td:nth-of-type(3):before { content: "Prix"; }
+  #productsTable td:nth-of-type(4):before { content: "Catégorie"; }
+  #productsTable td:nth-of-type(5):before { content: "Tag"; }
+  #productsTable td:nth-of-type(6):before { content: "Actions"; }
+
+  /* Labels for Orders Table */
+  #ordersTable td:nth-of-type(1):before { content: "N° Commande"; }
+  #ordersTable td:nth-of-type(2):before { content: "Date"; }
+  #ordersTable td:nth-of-type(3):before { content: "Client"; }
+  #ordersTable td:nth-of-type(4):before { content: "Téléphone"; }
+  #ordersTable td:nth-of-type(5):before { content: "Gouvernorat"; }
+  #ordersTable td:nth-of-type(6):before { content: "Total"; }
+  #ordersTable td:nth-of-type(7):before { content: "Statut"; }
+  #ordersTable td:nth-of-type(8):before { content: "Actions"; }
+
+  .admin-table-container .action-btns {
+    justify-content: flex-end;
   }
 }
