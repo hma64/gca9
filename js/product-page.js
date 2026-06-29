@@ -196,7 +196,7 @@ function renderOptionButtons(container, values, type) {
 
     if (type === "size") {
       const sizePrice = currentProduct.sizeMap && currentProduct.sizeMap[value];
-      btn.textContent = sizePrice !== undefined ? `${value} - ${formatPrice(sizePrice)}` : value;
+      btn.textContent = value;
       btn.className = "opt-btn size-opt-btn";
       btn.addEventListener("click", () => {
         const alreadySelected = btn.classList.contains("selected");
